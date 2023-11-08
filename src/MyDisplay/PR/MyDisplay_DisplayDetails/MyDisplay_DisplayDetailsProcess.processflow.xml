@@ -1,0 +1,51 @@
+<Process name="MyDisplay::DisplayDetailsProcess" defaultAction="SelectItemFromCockpit_Decision" schemaVersion="0.0.0.5">
+    <Entry>
+      <ProcessContext>
+        <Declarations>
+          <Declaration name="DisplayList" type="LoMyDisplays" />
+          <Declaration name="CurrentDisplay" type="BoMyDisplay" />
+        </Declarations>
+        <Parameters>
+          <Input name="DisplayPKey" type="DomPKey" />
+          <Input name="Mode" type="String" />
+        </Parameters>
+      </ProcessContext>
+      <EntryActions>
+        <Action name="loadDisplayList" actionType="LOAD" type="LoMyDisplays" >
+          <Return name="ProcessContext::DisplayList" />
+        </Action>
+      </EntryActions>
+    </Entry>
+    <Body>
+        <Actions>
+         <!-- Check if process called directly from cockpit-->
+          <Action name="SelectItemFromCockpit_Decision" actionType="DECISION" parameter="ProcessContext::Mode">
+            <Case value="Cockpit" action="SelectItemFromCockpit" />
+            <CaseElse action="ShowDisplayDetails" />
+          </Action>
+          <!-- If directly called from cockpit set the current item of the master list to the given pkey (selected in cockpit card)-->
+          <Action name="SelectItemFromCockpit" actionType="LOGIC" call="ProcessContext::DisplayList.setCurrentByPKey">
+            <Parameters>
+              <Input name="pKey" value="ProcessContext::DisplayPKey" />
+              <Input name="selected" type="Literal" value="true" />
+            </Parameters>
+            <TransitionTo action="ShowDisplayDetails" />
+          </Action>
+          <!-- View Action -->
+          <Action name="ShowDisplayDetails" actionType="VIEW">
+            <UIDescription>MyDisplay::DisplayDetailsUI</UIDescription>
+            <Events>
+                <Event name="itemSelected" action="LoadDisplayDetails" />
+            </Events>
+          </Action>
+          <Action name="LoadDisplayDetails" actionType="MASTER_DETAIL_HANDLER">
+            <MasterList name="ProcessContext::DisplayList">
+              <ItemUnselected type="RELOAD" />
+            </MasterList>
+            <DetailObject name="ProcessContext::CurrentDisplay" objectClass="BoMyDisplay">
+              <Save type="DIRTY" confirmation="FALSE" validate="TRUE" />
+            </DetailObject>
+          </Action>
+        </Actions>
+      </Body>
+    </Process>

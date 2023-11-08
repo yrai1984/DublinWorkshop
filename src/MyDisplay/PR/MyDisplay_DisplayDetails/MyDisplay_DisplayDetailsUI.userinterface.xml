@@ -1,0 +1,80 @@
+<UIDescription name="MyDisplay::DisplayDetailsUI" schemaVersion="0.0.0.5">
+  <Page pagePattern="MasterDetailSectionPage"  masterSectionFlex="40" detailSectionFlex="60">
+    <PageHeader>
+      <Bindings>
+        <Resource target="title" type="Label" id="DisplayDetailsTitle" defaultLabel="Display Details"  />
+      </Bindings>
+    </PageHeader>
+    <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
+      <Area areaName="mainArea" areaPattern="SingleElementArea">
+        <GroupedList name="displayList" master="true" dataSource="ProcessContext::DisplayList.items[]">
+          <Items name="Items" itemPattern="displayDetailsDisplayListItems">
+              <ItemListLayout>
+                  <Tablet>
+                    <Default>
+                      <Col width="1em" layoutType="Image" bindingId="Icon" />
+                      <Col flex="1">
+                        <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                        <Row layoutType="itemSecondaryCockpit" bindingId="Row_Description" />
+                      </Col>
+                    </Default>
+                  </Tablet>
+                  <Phone>
+                    <Default>
+                      <Col width="1em" layoutType="Image" bindingId="Icon" />
+                      <Col flex="1">
+                        <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                      </Col>
+                    </Default>
+                  </Phone>
+                </ItemListLayout>
+                <Bindings>
+                  <Binding target="Row_Name" type="Text" binding=".name" bindingMode="ONE_WAY" />
+                  <Binding target="Row_Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                  <Binding target="Icon" type="Image" binding=".iconId" bindingMode="ONE_WAY" />
+                </Bindings>
+          </Items>
+          <Events>
+            <ItemSelectedEvent event="itemSelected" resetMultiAreas="true">
+              <Params>
+                <Param name="pKey" value=".pKey" />
+              </Params>
+            </ItemSelectedEvent>
+          </Events>
+        </GroupedList>
+      </Area>
+    </Section>
+    <Section sectionName="detailSection" sectionPattern="SingleAreaSection">
+      <Area areaName="detailArea" areaPattern="GroupedElementsArea">
+        <GroupElement name="Info">
+          <Bindings>
+            <Resource target="Title" type="Label" id="DisplayDetailInfoGroup" defaultLabel="Info" />
+          </Bindings>
+          <InputArea name="Name">
+            <Bindings>
+              <Resource target="Label" type="Label" id="DisplayName" defaultLabel="Name" />
+              <Binding target="Value" binding="ProcessContext::CurrentDisplay.name" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputAreaMultiLine name="Description" noOfRows="3">
+            <Bindings>
+              <Resource target="Label" type="Label" id="DisplayDescription" defaultLabel="Description" />
+              <Binding target="Value" binding="ProcessContext::CurrentDisplay.description" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputAreaMultiLine>
+        </GroupElement>
+        <GroupElement name="Type">
+          <Bindings>
+            <Resource target="Title" type="Label" id="DisplayDetailTypeGroup" defaultLabel="Type" />
+          </Bindings>
+          <CheckBox name="CompetitorDisplay" >
+            <Bindings>
+              <Resource target="Label" type="Label" id="CompetitorDisplayCB" defaultLabel="Competitor Display" />
+              <Binding target="checkedValue" binding="ProcessContext::CurrentDisplay.competitorDisplay" bindingMode="TWO_WAY" />
+            </Bindings>
+          </CheckBox>
+        </GroupElement>
+        </Area>
+    </Section>
+   </Page>
+ </UIDescription>

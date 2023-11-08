@@ -3023,6 +3023,10 @@
         <Label id="QuickAccessCardTitle" text="Quick Access" translationStatus="7"/>
         <Label id="CardQuickAccess_NoDataMessageMainText" text="No quick links were defined for you yet" translationStatus="7"/>
         <Label id="ActivitiesId" text="Activities" translationStatus="1"/>
+        <Label id="MyNoCardNoDataMainText" text="No data available, " translationStatus="1"/>
+        <Label id="MyNoCardNoDataSubText" text="relax and enjoy the sun!" translationStatus="1"/>
+        <Label id="DisplayCardTitle" text="Displays" translationStatus="1"/>
+        <Label id="DisplayCardInfo" text="Info / Counter" translationStatus="1"/>
       </UserInterface>
       <UserInterface id="UserNotificationFlyoutUI">
         <Label id="NotificationsTitleId" text="Notification Details" translationStatus="7"/>

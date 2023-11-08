@@ -1,0 +1,20 @@
+<DataSource name="DsBoMyDisplay" backendSystem="sf" businessObjectClass="BoMyDisplay" external="false" editableEntity="Display__c" schemaVersion="2.0">
+  <Attributes>
+    <Attribute name="pKey" table="Display__c" column="Id" />
+    <Attribute name="name" table="Display__c" column="Name" />
+    <Attribute name="description" table="Display__c" column="Description__c" />
+    <Attribute name="competitorDisplay" table="Display__c" column="Competitor_Display__c" />
+  </Attributes>
+  <Entities>
+    <Entity name="Display__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition>
+    <![CDATA[ 
+      Display__c.Id = #pKey#
+    ]]>
+  </QueryCondition>
+  <OrderCriteria/>
+  <Parameters>
+    <Parameter name="pKey" type="TEXT" />
+  </Parameters>
+</DataSource>

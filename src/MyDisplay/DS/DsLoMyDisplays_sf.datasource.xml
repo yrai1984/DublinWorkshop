@@ -1,0 +1,17 @@
+<DataSource name="DsLoMyDisplays" backendSystem="sf" businessObjectClass="LoMyDisplays" external="false" editableEntity="Display__c" schemaVersion="2.0">
+  <Attributes>
+    <Attribute name="pKey" table="Display__c" column="Id" />
+    <Attribute name="name" table="Display__c" column="Name" />
+    <Attribute name="description" table="Display__c" column="Description__c" />
+    <Attribute name="competitorDisplay" table="Display__c" column="Competitor_Display__c" />
+    <DerivedAttribute name="iconId" value="CASE  Competitor_Display__c WHEN '0' THEN 'Shelf_Lime' ELSE 'Shelf_Dark_Orange' END" />
+  </Attributes>
+  <Entities>
+    <Entity name="Display__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition />
+  <OrderCriteria>
+    <OrderCriterion entity="Display__c" attribute="Name" direction="ASC" />
+  </OrderCriteria>
+  <Parameters />
+</DataSource>

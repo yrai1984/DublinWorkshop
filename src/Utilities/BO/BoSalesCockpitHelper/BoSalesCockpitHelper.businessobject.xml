@@ -3,6 +3,7 @@
   <SimpleProperties>
     <SimpleProperty name="pKey" type="DomPKey" />
     <SimpleProperty name="collapseState_CardUserWelcome" type="DomBool" />
+    <SimpleProperty name="collapseState_CardDisplay" type="DomBool" />
     <SimpleProperty name="collapseState_CardActivities" type="DomBool" />
     <SimpleProperty name="collapseState_CardSync" type="DomBool" />
     <SimpleProperty name="numberOfListItems" type="DomInteger" />
